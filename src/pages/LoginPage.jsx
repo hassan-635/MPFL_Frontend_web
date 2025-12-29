@@ -18,7 +18,10 @@ const LoginPage = () => {
           <LoginForm />
           
           <p className="mt-8 text-center text-sm font-bold text-slate-400">
-            Don't have an account? <a href="#" className="text-blue-600 hover:underline">Request Access</a>
+            Don't have an account? {' '}
+            <Link to="/signup" className="text-blue-600 hover:underline hover:text-blue-700 transition-colors">
+                Request Access
+            </Link>
           </p>
         </div>
       </div>

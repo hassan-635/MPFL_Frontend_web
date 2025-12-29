@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
@@ -26,11 +27,12 @@ const Hero = () => {
         </p>
 
         <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
-          <button className="group bg-blue-600 text-white px-10 py-5 rounded-[20px] text-lg font-bold shadow-[0_20px_40px_-10px_rgba(37,99,235,0.3)] hover:bg-blue-700 hover:shadow-blue-300/50 transition-all flex items-center gap-2">
-            Create Your First Project
-            <ArrowUpRight size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-          </button>
-          
+            <Link to="/signup">
+                <button className="group bg-blue-600 text-white px-10 py-5 rounded-[20px] text-lg font-bold shadow-[0_20px_40px_-10px_rgba(37,99,235,0.3)] hover:bg-blue-700 hover:shadow-blue-300/50 transition-all flex items-center gap-2">
+                    Create Your First Project
+                    <ArrowUpRight size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                </button>
+            </Link>
           <div className="flex items-center gap-3">
              <div className="flex -space-x-3">
                 {[1,2,3,4].map(i => (

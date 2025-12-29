@@ -31,10 +31,11 @@ const Nav = () => {
           </a>
           
           <Link to="/login" className={linkStyle}>Sign In<span className={underlineStyle}></span></Link>
-
-          <button className="bg-slate-900 text-white text-[13px] font-bold px-7 py-3 rounded-xl hover:bg-blue-600 hover:shadow-[0_10px_20px_-5px_rgba(37,99,235,0.4)] transition-all active:scale-95">
-            Get Started
-          </button>
+          <Link to="/signup">
+            <button className="bg-slate-900 text-white text-[13px] font-bold px-7 py-3 rounded-xl hover:bg-blue-600 hover:shadow-[0_10px_20px_-5px_rgba(37,99,235,0.4)] transition-all active:scale-95">
+                Get Started
+            </button>
+          </Link>
         </div>
       </div>
     </nav>

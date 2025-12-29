@@ -27,32 +27,37 @@ const LoginForm = () => {
 
   // 3. Submit Handler (Final Logic)
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError('');
+  e.preventDefault();
+  setLoading(true);
+  setError('');
 
-    try {
-      // Backend API Call (Jab backend ban jaye toh ye URL update kar lena)
-      const response = await axios.post('https://mpfl-backend.onrender.com/api/auth/login', formData);
-
-      // Token ko browser mein save karna
-      const token = response.data.token;
-      localStorage.setItem('token', token);
-
-      // Dashboard par redirect karna
-      navigate('/dashboard');
-      
-    } catch (err) {
-      // Error Handling: Backend se aane wala error msg dikhana
-      if (err.response && err.response.data) {
-        setError(err.response.data.message || 'Invalid email or password');
-      } else {
-        setError('Server is not responding. Please try again later.');
+  try {
+    const response = await axios({
+      method: 'post',
+      url: 'https://mpfl-backend.onrender.com/api/v1/auth/login',
+      data: {
+        email: formData.email.toLowerCase().trim(), // Backend lowercase expect kar raha hai
+        password: formData.password
+      },
+      headers: {
+        'Content-Type': 'application/json'
       }
-    } finally {
-      setLoading(false);
+    });
+
+    console.log("Login Success:", response.data);
+
+    if (response.data.token) {
+      localStorage.setItem('token', response.data.token);
+      navigate('/dashboard');
     }
-  };
+  } catch (err) {
+    console.error("Login Error Details:", err.response?.data);
+    // Agar backend 'Invalid Credentials' bhej raha hai toh wahi dikhayega
+    setError(err.response?.data?.message || 'Login failed. Check Console.');
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="w-full">
