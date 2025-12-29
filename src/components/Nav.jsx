@@ -1,7 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Nav = () => {
-  // Common style class for the text links
   const linkStyle = "relative text-[13px] font-bold text-slate-900 px-2 py-1 group overflow-hidden";
   const underlineStyle = "absolute bottom-0 left-0 w-full h-[2px] bg-blue-600 -translate-x-[110%] group-hover:translate-x-0 transition-transform duration-300";
 
@@ -25,18 +25,13 @@ const Nav = () => {
 
         {/* Action Buttons & Links */}
         <div className="flex items-center gap-6">
-          {/* Same Style Links */}
           <a href="/client-access" className={linkStyle}>
             Client Portal
             <span className={underlineStyle}></span>
           </a>
           
-          <a href="/login" className={linkStyle}>
-            Sign In
-            <span className={underlineStyle}></span>
-          </a>
+          <Link to="/login" className={linkStyle}>Sign In<span className={underlineStyle}></span></Link>
 
-          {/* Primary CTA */}
           <button className="bg-slate-900 text-white text-[13px] font-bold px-7 py-3 rounded-xl hover:bg-blue-600 hover:shadow-[0_10px_20px_-5px_rgba(37,99,235,0.4)] transition-all active:scale-95">
             Get Started
           </button>
