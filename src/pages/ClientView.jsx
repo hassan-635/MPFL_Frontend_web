@@ -36,8 +36,11 @@ const ClientView = () => {
 
   // 2. FEEDBACK LOGIC (Exact Mobile App Match)
   const handleFeedback = async (decision) => {
+    // Normalize to match backend expectation ("Accepted" or "Rejected")
+    const normalizedDecision = decision.charAt(0).toUpperCase() + decision.slice(1).toLowerCase();
+
     // Agar mobile app feedback mang rahi hai, toh handle karein
-    if (!comment.trim() && decision === 'Rejected') {
+    if (!comment.trim() && normalizedDecision === 'Rejected') {
       return alert("Please enter a comment for revisions.");
     }
 
@@ -48,13 +51,18 @@ const ClientView = () => {
     setSubmitting(true);
     try {
       // Bulk feedback at project level as per backend routes
+      console.log('Submitting feedback', { projectId: project._id, decision: normalizedDecision, comment });
       const res = await axios.put(`${API_BASE_URL}/client/bulk-feedback/${project._id}`, {
-        decision: decision, // 'Approved' ya 'Rejected'
-        comment: comment
+        clientFeedback: {
+          name: 'Client',
+          email: '',
+          comment: comment,
+          decision: normalizedDecision, // "Accepted" or "Rejected"
+        }
       });
 
       if (res.status === 200 || res.status === 201) {
-        alert(`Project ${decision} Successfully!`);
+        alert(`Project ${normalizedDecision} Successfully!`);
         setComment('');
         // Refresh data
         const refresh = await axios.get(`${API_BASE_URL}/client/shared/${token}`);

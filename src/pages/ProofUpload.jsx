@@ -83,7 +83,19 @@ const ProofUpload = () => {
                 <h3 className="text-[9px] font-black text-slate-300 uppercase tracking-widest mb-4">Assets</h3>
                 {proofs.map((p, i) => (
                     <div key={i} className="p-3 mb-2 bg-slate-50 border rounded-xl flex justify-between items-center group">
-                        <span className="text-[11px] font-bold">Asset_{i+1}</span>
+                        <div className="text-left">
+                            <span className="text-[11px] font-bold">Asset_{i+1}</span>
+                            {p.clientFeedback?.decision && (
+                              <div className="flex items-center gap-2 mt-1">
+                                {p.clientFeedback.decision === 'Accepted' ? (
+                                  <CheckCircle2 className="text-green-500" size={14} />
+                                ) : (
+                                  <AlertCircle className="text-red-500" size={14} />
+                                )}
+                                <span className="text-[10px] text-slate-500">{p.clientFeedback.comment ? (p.clientFeedback.comment.length > 60 ? p.clientFeedback.comment.slice(0,60) + '...' : p.clientFeedback.comment) : p.clientFeedback.decision}</span>
+                              </div>
+                            )}
+                        </div>
                         <button onClick={() => triggerDownload(p.imageUrl || p.fileUrl)} className="text-slate-400 hover:text-blue-600">
                           <Download size={14} />
                         </button>
