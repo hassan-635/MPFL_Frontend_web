@@ -20,6 +20,6 @@ If you are developing a production application, we recommend using TypeScript wi
 ## Contributors
 
 - hassan-635 — https://github.com/hassan-635
-- Malik Hassan Ullah — https://github.com/Malik-Hassan-Ullah (Collaborator)
+- Malik Hassam Ullah — https://github.com/Malik-Hassam-Ullah (Collaborator)
 
 ---
